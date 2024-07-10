@@ -1,0 +1,25 @@
+﻿
+
+version: '3.4'
+
+services:
+  spacemissionapi:
+    image: spacemissionapi
+    build:
+      context: ..
+      dockerfile: SpaceMissionAPI/Dockerfile
+    ports:      
+      - "5000:8080" # Map container port 8080 to host port 5000
+      - "5001:8081" # Map container port 8081 to host port 5001
+    depends_on:
+      - mssql
+    environment:
+      - ConnectionStrings__DefaultConnection=Server=mssql,1443;Database=SpaceMissionDb;User=sa;Password=SA@rh#524LQS;TrustServerCertificate=True;
+    command: bash -c "dotnet ef database update --project ../SpaceMissionServices/SpaceMissionServices.csproj --startup-project SpaceMissionAPI/SpaceMissionAPI.csproj && dotnet SpaceMissionAPI.dll"
+  mssql:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      SA_PASSWORD: "SA@rh#524LQS"
+      ACCEPT_EULA: "Y"
+    ports:
+      - "1433:1433"   

@@ -1,0 +1,14 @@
+﻿version: '3.8'
+
+services:
+   spacemissionsubscribe:
+    build:
+      context: .  # Path to the directory containing Dockerfile for SpaceMissionSubscribe
+    container_name: space_mission_subscribe1
+    environment:
+      - MQTT_BROKER_HOST=mosquitto  # Hostname of the Mosquitto broker container
+    #ports:
+    #  - "8080:80"  # Adjust port mapping as per your application requirements
+networks:
+  mqtt-network:
+    external: true  # Using an external network definition
