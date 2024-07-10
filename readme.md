@@ -67,6 +67,32 @@ To start the **SpaceMissionPublisher**, follow these steps:
 
     docker-compose up --build
 
+# SpaceMissionSubscriber
+
+**SpaceMissionSubscriber** is a service worker responsible for subscribing to messages from space, processing the received data, and storing it in both an Excel file and an SQL Server database. This service can be configured using a `config.txt` file located in the root folder.
+
+## Features
+
+- **Message Subscription**: Subscribes to temperature readings and other sensor data from the MQTT broker.
+- **Data Processing**: Processes the received data, converting it from Fahrenheit to Celsius and calculating the temperature difference.
+- **SQL Server Integration**: Inserts the processed data into an SQL Server database for persistent storage and further analysis.
+- **Configurable**: Easily configurable using the `config.txt` file for customized operation.
+
+## Configuration
+
+To set up the **SpaceMissionSubscriber**, you need to configure the `config.txt` file located in the root directory of the project. The configuration file should include settings such as the MQTT broker details, file paths, and SQL Server connection string.
+
+## Running the Service
+
+To start the **SpaceMissionSubscriber**, follow these steps:
+
+1. Ensure Docker is installed on your machine.
+2. Navigate to the root directory of the project.
+3. Ensure the `config.txt` file is properly set up.
+4. Execute the following command:
+
+    docker-compose up --build
+
 ### SpaceMissionAPI
 
 **SpaceMissionAPI** is the core of the project's backend, built using the MVC framework. It provides endpoints for saving and retrieving temperature data.
