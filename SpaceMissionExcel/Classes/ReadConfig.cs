@@ -1,4 +1,5 @@
 ﻿using Serilog;
+using SpaceMissionExcel.CommonClass;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -6,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SpaceMissionSubscribe
+namespace SpaceMissionExcel.Classes
 {
     public static class ReadConfig
     {
@@ -16,10 +17,10 @@ namespace SpaceMissionSubscribe
         /// <returns></returns>
         public static bool LoadConfig()
         {
-            String curPath = Environment.CurrentDirectory + "/config.txt";
+            string curPath = Environment.CurrentDirectory + "/config.txt";
             //String curPath = "config.txt";
 
-            String line;
+            string line;
             string[] arguments;
 
             using (StreamReader sr = new StreamReader(curPath))
@@ -39,28 +40,32 @@ namespace SpaceMissionSubscribe
                             switch (arguments[0].ToUpper().Trim())
                             {
                                 case "MESSAGE_TOPIC":
-                                    CommonVariable.MESSAGE_TOPIC = arguments[1];
+                                    CommonVariable.MESSAGE_TOPIC = arguments[1].Trim();
                                     break;
 
                                 case "MQTT_SERVER_USER":
-                                    CommonVariable.MQTT_SERVER_USER = arguments[1];
+                                    CommonVariable.MQTT_SERVER_USER = arguments[1].Trim();
                                     break;
 
                                 case "MQTT_SERVER_PASSWORD":
-                                    CommonVariable.MQTT_SERVER_PASSWORD = arguments[1];
+                                    CommonVariable.MQTT_SERVER_PASSWORD = arguments[1].Trim();
                                     break;
 
                                 case "MQTT_SERVER_ADDRESS":
-                                    CommonVariable.MQTT_SERVER_ADDRESS = arguments[1];
+                                    CommonVariable.MQTT_SERVER_ADDRESS = arguments[1].Trim();
                                     break;
 
                                 case "MQTT_SERVER_PORT":
-                                    if (arguments[1] is int) {
+                                    if (arguments[1] is int)
+                                    {
                                         CommonVariable.MQTT_SERVER_PORT = Convert.ToInt32(arguments[1]);
                                     }
                                     break;
                                 case "BASEURL_API":
-                                    CommonVariable.BASEURL_API = arguments[1];
+                                    CommonVariable.BASEURL_API = arguments[1].Trim();
+                                    break;
+                                case "EXCEL_FILE":
+                                    CommonVariable.EXCEL_FILE = arguments[1].Trim();
                                     break;
                             }
                         }

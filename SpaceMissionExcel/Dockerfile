@@ -20,6 +20,5 @@ COPY --from=build /out .
 COPY config.txt .
 
 # Run the application
-ENTRYPOINT ["dotnet", "SpaceMissionSubscribe.dll"]
+ENTRYPOINT ["dotnet", "SpaceMissionExcel.dll"]
 
-#############################

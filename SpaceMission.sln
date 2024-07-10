@@ -3,19 +3,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpaceMissionMQTTService", "SpaceMissionMQTTService\SpaceMissionMQTTService.csproj", "{71D22FC4-7309-4F79-A4C9-50903C00821C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpaceMissionMQTTService", "SpaceMissionMQTTService\SpaceMissionMQTTService.csproj", "{71D22FC4-7309-4F79-A4C9-50903C00821C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpaceMissionPublisher", "SpaceMissionPublisher\SpaceMissionPublisher.csproj", "{5CCCE348-9415-47CD-9F59-F6F3FFFA5210}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpaceMissionPublisher", "SpaceMissionPublisher\SpaceMissionPublisher.csproj", "{5CCCE348-9415-47CD-9F59-F6F3FFFA5210}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpaceMissionSubscribe", "SpaceMissionSubscribe\SpaceMissionSubscribe.csproj", "{4E134B49-44E8-4ACC-87AA-0B301A0CD5D6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpaceMissionSubscribe", "SpaceMissionSubscribe\SpaceMissionSubscribe.csproj", "{4E134B49-44E8-4ACC-87AA-0B301A0CD5D6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpaceMissionAPI", "SpaceMissionAPI\SpaceMissionAPI.csproj", "{0EE420E3-6A6C-46B7-9854-77CF9354593D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpaceMissionAPI", "SpaceMissionAPI\SpaceMissionAPI.csproj", "{0EE420E3-6A6C-46B7-9854-77CF9354593D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpaceMissionServices", "SpaceMissionServices\SpaceMissionServices.csproj", "{2E569E29-7629-4D9B-8D3A-FC8B6B2128C0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpaceMissionServices", "SpaceMissionServices\SpaceMissionServices.csproj", "{2E569E29-7629-4D9B-8D3A-FC8B6B2128C0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpaceMissionModels", "SpaceMissionModels\SpaceMissionModels.csproj", "{0B5B4A71-D68B-42DB-A551-B1E8E294B070}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpaceMissionModels", "SpaceMissionModels\SpaceMissionModels.csproj", "{0B5B4A71-D68B-42DB-A551-B1E8E294B070}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpaceMissionShared", "SpaceMissionShared\SpaceMissionShared.csproj", "{6F6A8CE4-CD0F-4E90-BC85-C493DFC64533}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpaceMissionShared", "SpaceMissionShared\SpaceMissionShared.csproj", "{6F6A8CE4-CD0F-4E90-BC85-C493DFC64533}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpaceMissionExcel", "SpaceMissionExcel\SpaceMissionExcel.csproj", "{0C867185-650C-4BBE-9EC9-68DAF451AA8E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{6F6A8CE4-CD0F-4E90-BC85-C493DFC64533}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6F6A8CE4-CD0F-4E90-BC85-C493DFC64533}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6F6A8CE4-CD0F-4E90-BC85-C493DFC64533}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C867185-650C-4BBE-9EC9-68DAF451AA8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C867185-650C-4BBE-9EC9-68DAF451AA8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C867185-650C-4BBE-9EC9-68DAF451AA8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C867185-650C-4BBE-9EC9-68DAF451AA8E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

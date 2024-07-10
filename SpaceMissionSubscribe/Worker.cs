@@ -4,6 +4,7 @@ using MQTTnet.Client.Options;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Serilog;
+using SpaceMissionSubscribe.CommonClass;
 using System.Text;
 
 namespace SpaceMissionSubscribe
@@ -126,6 +127,7 @@ namespace SpaceMissionSubscribe
                         var response = _httpClient.PostAsync("/api/SpaceMission/AddTemperature", data).GetAwaiter().GetResult();
 
                         _latestTemperture = Convert.ToDouble(curTemperature);
+                        Console.WriteLine($"Saved Last Temperature {_latestTemperture }");
                         //string result = response.Content.ReadAsStringAsync().Result;
 
                     }
@@ -133,6 +135,7 @@ namespace SpaceMissionSubscribe
 
             }catch (Exception ex)
             {
+                Console.WriteLine(ex.ToString());
                 Log.Error($"ProcessMessageAsync {ex.ToString()}");
             }
             //Console.WriteLine($"Processing message: Topic={message.Topic}, Payload={Encoding.UTF8.GetString(message.Payload)}  temperature={jsonObject["temperature"]} timestamp={jsonObject["timestamp"]} ");
@@ -152,7 +155,6 @@ namespace SpaceMissionSubscribe
                     string content = await response.Content.ReadAsStringAsync();
                     var result = JsonConvert.DeserializeObject<Temperature>(content);
                     _latestTemperture = result != null ? result.TemperatureCelsius : 0;
-
                 }
             }
             catch (Exception ex)

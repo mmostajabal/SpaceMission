@@ -1,8 +1,8 @@
-﻿INTERVAL = 5000
+﻿INTERVAL = 300000
 MESSAGE_TOPIC = spacemission12/topic
 MQTT_SERVER_ADDRESS = host.docker.internal
 MQTT_SERVER_PORT = 1883
 MQTT_SERVER_USER = ""
 MQTT_SERVER_PASSWORD = ""
-EXCEL_FILE = temperature_data.xlsx
+EXCEL_FILE = temperaturedata.xlsx
 BASEURL_API = http://host.docker.internal:32777

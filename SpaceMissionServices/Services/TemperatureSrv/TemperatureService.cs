@@ -40,9 +40,12 @@ namespace SpaceMissionServices.Services.TemperatureSrv
             return true;
         }
 
-        public Task<IList<TemperatureDTO>> GetAllTemperature()
+        public async Task<List<TemperatureDTO>> GetAllTemperature(int Id = 0)
         {
-            throw new NotImplementedException();
+            if(Id == 0)
+                return _dbContext.Temperatures.Select(s=>_mapper.Map<TemperatureDTO>(s)).ToList();
+            else
+                return _dbContext.Temperatures.Where(c => c.Id > Id).Select(s => _mapper.Map<TemperatureDTO>(s)).ToList();
         }
         /// <summary>
         /// LastTemperature

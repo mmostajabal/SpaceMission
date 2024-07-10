@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SpaceMissionSubscribe
+namespace SpaceMissionExcel.CommonClass
 {
-    public static  class CommonVariable
+    public static class CommonVariable
     {
         public static int INTERVAL = 5000;
 
@@ -18,8 +18,10 @@ namespace SpaceMissionSubscribe
 
         public static string MQTT_SERVER_USER = "";
 
-        public static string  MQTT_SERVER_PASSWORD = "";
+        public static string MQTT_SERVER_PASSWORD = "";
 
         public static string BASEURL_API = "";
+
+        public static string EXCEL_FILE = "temperature_data";
     }
 }

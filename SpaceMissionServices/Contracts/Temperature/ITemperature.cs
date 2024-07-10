@@ -11,6 +11,6 @@ namespace SpaceMissionServices.Contracts.Temperature
     {
         Task<bool> AddTemperature(TemperatureDTO temperature);
         Task<TemperatureDTO> LastTemperature();
-        Task<IList<TemperatureDTO>> GetAllTemperature();
+        Task<List<TemperatureDTO>> GetAllTemperature(int Id = 0);
     }
 }

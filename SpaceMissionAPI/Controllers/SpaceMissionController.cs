@@ -56,5 +56,12 @@ namespace SpaceMissionAPI.Controllers
         {
             return Ok(_temperatureSrv.LastTemperature().GetAwaiter().GetResult());
         }
+
+        [HttpGet("GetAll")]
+        public async Task<IActionResult> GetLatestTemperature(int Id = 0)
+        {
+            return Ok(_temperatureSrv.GetAllTemperature(Id).GetAwaiter().GetResult());
+        }
+
     }
 }
