@@ -15,7 +15,7 @@ the pros and cons of using MQTT and HTTP protocols for data transfer between a s
 - Designed for low-bandwidth, high-latency networks.
 - Lightweight and efficient, minimizing overhead.
 - Supports quality of service (QoS) levels, ensuring message delivery.
-- Publish/subscribe model is well-suited for telemetry data.
+- Publish/subscribe model is well-suited for telemetry data.(Telemetry data extends to and includes all logs, metrics, events and traces that are created by your applications.)
 
 ### Cons
 - Less suitable for complex data transactions without additional mechanisms.
