@@ -8,18 +8,20 @@ using System.Text;
 
 namespace SpaceMissionSubscribe
 {
-    
+
     public class Worker : BackgroundService
     {
         private IMqttClient _mqttClient;
-        private Double? _latestTemperture;
+        private double _latestTemperture;
         private readonly HttpClient _httpClient;
         public Worker(HttpClient httpClient)
         {
             var mqttFactory = new MqttFactory();
             _mqttClient = mqttFactory.CreateMqttClient();
-            _latestTemperture = null;
+
             _httpClient = httpClient;
+
+            _latestTemperture = GetLatestTemperature().GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -31,7 +33,7 @@ namespace SpaceMissionSubscribe
         {
 
             var options = new MqttClientOptionsBuilder()
-                .WithTcpServer(CommonVariable.MQTT_SERVER_ADDRESS, CommonVariable.MQTT_SERVER_PORT)  
+                .WithTcpServer(CommonVariable.MQTT_SERVER_ADDRESS, CommonVariable.MQTT_SERVER_PORT)
                 //.WithTcpServer("host.docker.internal", 1883)  
                 .Build();
 
@@ -74,7 +76,8 @@ namespace SpaceMissionSubscribe
             try
             {
                 await _mqttClient.ConnectAsync(options, CancellationToken.None);
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 Log.Error($"Worker -> UseDisconnectedHandler : Could not Connect to Broker {DateTime.Now}");
             }
@@ -101,33 +104,46 @@ namespace SpaceMissionSubscribe
         /// <returns></returns>
         async Task ProcessMessageAsync(MqttApplicationMessage message)
         {
-
             JObject jsonObject = JObject.Parse(Encoding.UTF8.GetString(message.Payload));
-
-
-            if(_latestTemperture == null)
+            try
             {
-                _latestTemperture = GetLatestTemperature().GetAwaiter().GetResult();
-            }
+                if (jsonObject["temperature"] != null)
+                {
+                    var curTemperature = jsonObject["temperature"];
 
-            if (jsonObject["temperature"] != null)
-            {
-                var curTemperature = jsonObject["temperature"];
-                if(curTemperature is double) {
+                    if (curTemperature != null && curTemperature.Type == JTokenType.Float)
+                    {
+                        Temperature temperature = new Temperature
+                        {
+                            Id = 0,
+                            TemperatureCelsius = Convert.ToDouble(curTemperature),
+                            DiffTemperature = Convert.ToDouble(curTemperature) - _latestTemperture,
+                            Timestamp = DateTime.Now
+                        };
 
+                        var json = JsonConvert.SerializeObject(temperature);
+                        var data = new StringContent(json, Encoding.UTF8, "application/json");
+                        var response = _httpClient.PostAsync("/api/SpaceMission/AddTemperature", data).GetAwaiter().GetResult();
+
+                        _latestTemperture = Convert.ToDouble(curTemperature);
+                        //string result = response.Content.ReadAsStringAsync().Result;
+
+                    }
                 }
-                Console.WriteLine($"cur message {jsonObject["temperature"] ?? 0}");
+
+            }catch (Exception ex)
+            {
+                Log.Error($"ProcessMessageAsync {ex.ToString()}");
             }
-            
-            
             //Console.WriteLine($"Processing message: Topic={message.Topic}, Payload={Encoding.UTF8.GetString(message.Payload)}  temperature={jsonObject["temperature"]} timestamp={jsonObject["timestamp"]} ");
         }
         /// <summary>
         /// GetLatestTemperature
         /// </summary>
         /// <returns></returns>
-        async Task<Double> GetLatestTemperature()
+        async Task<double> GetLatestTemperature()
         {
+            _latestTemperture = 0;
             try
             {
                 HttpResponseMessage response = await _httpClient.GetAsync("/api/SpaceMission/GetLatestTemperature");
@@ -138,12 +154,13 @@ namespace SpaceMissionSubscribe
                     _latestTemperture = result != null ? result.TemperatureCelsius : 0;
 
                 }
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 Log.Error($"GetLatestTemperature {ex.ToString()}");
             }
 
-            return _latestTemperture??0;
+            return _latestTemperture;
         }
 
     }
