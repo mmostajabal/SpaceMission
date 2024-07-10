@@ -7,7 +7,7 @@ Agency wanted to make sure you did not become bored on your trip, so they also t
 
 ## Features
 
-1. **API Development**: Use .Net Core to develop the API with endpoints for earning points.
+1. **API Development**: Use .Net Core to develop the API with endpoints for earning points and service worker
 2. **Logging**: Integrate Serilog for logging.
 3. **Database**: Use EFCore for database access with migrations.
 4. **Validation**: Use FluentValidation for validating incoming requests.
