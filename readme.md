@@ -5,6 +5,34 @@ Space... the final frontier. You the captain and sole crew member of the U.S.S. 
 sustain human life. You’ve been tasked with capturing sensor data while orbiting the planet and relaying it back to Earth. The Earth Space
 Agency wanted to make sure you did not become bored on your trip, so they also tasked you to write all the code to support this mission.
 
+# Space Communication Protocols
+
+the pros and cons of using MQTT and HTTP protocols for data transfer between a spaceship and Earth.
+
+## MQTT (Message Queuing Telemetry Transport)
+
+### Pros
+- Designed for low-bandwidth, high-latency networks.
+- Lightweight and efficient, minimizing overhead.
+- Supports quality of service (QoS) levels, ensuring message delivery.
+- Publish/subscribe model is well-suited for telemetry data.
+
+### Cons
+- Less suitable for complex data transactions without additional mechanisms.
+- Requires a broker, which adds an additional component to the system.
+
+## HTTP (HyperText Transfer Protocol)
+
+### Pros
+- Widely used and well-understood.
+- Can handle complex requests and responses.
+- Robust and can work with existing web technologies and infrastructures.
+
+### Cons
+- Higher overhead compared to MQTT.
+- Less efficient for real-time or continuous data streaming.
+- Not optimized for high-latency or lossy networks.
+
 ## Features
 
 1. **API Development**: Use .Net Core to develop the API with endpoints for earning points and service worker
@@ -127,3 +155,7 @@ To start the **SpaceMissionExcel**, follow these steps:
 4. Execute the following command:
 
     docker-compose up --build
+
+
+
+To request reasonable accommodations or report inaccessible content, please fill out our accessibility accommodation form, or contact the City at 303-384-8000 or at 911 10th Street, Golden, CO 80401. The City of Golden is committed to responding to requests/reports within [2] business days.
